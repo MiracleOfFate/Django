@@ -38,7 +38,7 @@ def home(request): # 为了使 django 自动调用，必须定义一个参数，
         :param request
         :
     '''
-    return render(request,'basic.html',{"whichHTML":"home.html","oid":""})
+    return render(request,'basic/basic.html',{"whichHTML":"home/home.html","oid":""})
 
 # 返回子页面
 def child(request,eid,oid): # 为了使 django 自动调用，必须定义一个参数，以方便传入必要的信息。这里的参数名可任意取，但为了可理解，一般取request（这个参数是必须存在的，只要是urls.py中映射的函数，必须有。它里面包含了所有这次请求的东西，比如请求者的ip，登陆的用户名，http请求等等，都会包含在此）
