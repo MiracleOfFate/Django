@@ -10,26 +10,27 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent # 项目在当前计算机中的路径
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qw##+(etnkmchs^p2ucd*)s3kmy@4g#&wz=f$brr*syi9%ty-^'
+SECRET_KEY = 'django-insecure-qw##+(etnkmchs^p2ucd*)s3kmy@4g#&wz=f$brr*syi9%ty-^' # 安全密匙
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True # 调试模式，默认为True，如果想要上生产环境需要改为False
 
-ALLOWED_HOSTS = ['*',]
+ALLOWED_HOSTS = ['*',] # 允许访问主机列表。默认本地地址
 
 
 # Application definition
-
+# Django框架管理中的所有模块，只要通过startapp中添加的app都要配置到这里，方便内容使用
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'Myapp'
 ]
 
+# 中间件配置，可以自行增加以及删除
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -50,12 +52,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'ApiTest.urls'
+ROOT_URLCONF = 'ApiTest.urls' # 根路由定义
 
+# 上下文模块路径配置，对公共静态页面进行处理
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # 'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, '/Myapp/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,23 +72,24 @@ TEMPLATES = [
     },
 ]
 
+# wsdi协议配置
 WSGI_APPLICATION = 'ApiTest.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
+# 数据库配置文件，默认为sqlite3
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3', # 数据库名称
     }
 }
 
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
-
+# 身份认证配置
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -103,21 +108,21 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
+# 语言配置
+LANGUAGE_CODE = 'en-us' # 语言
 
-LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'UTC' # 时区
 
-TIME_ZONE = 'UTC'
+USE_I18N = True # 国际化配置
 
-USE_I18N = True
+USE_L10N = True # 表单国际化配置
 
-USE_L10N = True
-
-USE_TZ = True
+USE_TZ = True   # 默认启用时时区配置
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
+# 静态文件夹配置
 STATIC_URL = '/static/'
 
 # Default primary key field type
