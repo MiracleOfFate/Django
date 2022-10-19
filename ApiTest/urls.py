@@ -15,10 +15,11 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path,include,re_path
 from Myapp.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('Myapp/',include('Myapp.urls')), # 使用路由分发（include），让每个app目录都单独拥有自己的 urls
+    # re_path(r'^child/(?P<eid>.+)/(?P<oid>.*)/$',child), # 返回子页面
 ]
