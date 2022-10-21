@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Myapp'
+
+    # 'Myapp',
+    'Myapp.apps.MyappConfig', # 注册 Myapp 应用
 ]
 
 # 中间件配置，可以自行增加以及删除
@@ -52,14 +54,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'ApiTest.urls' # 根路由定义
+ROOT_URLCONF = 'ApiTest.urls' # 根路由定义（importance！）
 
 # 上下文模块路径配置，对公共静态页面进行处理
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         # 'DIRS': [],
-        'DIRS': [os.path.join(BASE_DIR, '/Myapp/templates')],
+        'DIRS': [os.path.join(BASE_DIR, '/Myapp/templates')], # 决定这Django到哪里去找模板文件
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -109,9 +111,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 # 语言配置
-LANGUAGE_CODE = 'en-us' # 语言
+LANGUAGE_CODE = 'zh-Hans' # 语言
 
-TIME_ZONE = 'UTC' # 时区
+TIME_ZONE = 'Asia/Shanghai' # 时区
 
 USE_I18N = True # 国际化配置
 
